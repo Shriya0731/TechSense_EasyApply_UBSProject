@@ -1,0 +1,15 @@
+MANIFEST.in
+README.md
+requirements.txt
+setup.cfg
+setup.py
+email_lib/__init__.py
+email_lib/emails.py
+email_lib/hashtags.py
+email_lib.egg-info/PKG-INFO
+email_lib.egg-info/SOURCES.txt
+email_lib.egg-info/dependency_links.txt
+email_lib.egg-info/requires.txt
+email_lib.egg-info/top_level.txt
+test/test_email.py
+test/test_hashtags.py
