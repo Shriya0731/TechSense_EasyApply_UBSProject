@@ -1,5 +1,5 @@
 import mysql.connector
-
+import backend
 # Creating connection object
 mydb = mysql.connector.connect(
     host="localhost",
@@ -17,9 +17,6 @@ def insert_new_jd(role,desc):
         mycursor.execute(sql, val)
         mydb.commit()
         return "record inserted successfully!"
-
-
-
 
 def display_table():
     mycursor = mydb.cursor()
@@ -47,7 +44,11 @@ def getjobdesc(job_title):
     val = (job_title,)
     mycursor.execute(sql,val)
     data = mycursor.fetchall()
-    return data[0]
+    print(data)
+    if (len(data)!=0):
+        return data[0]
+    else:
+        return False
 
 
 def addsimilarityscore(name,score):
@@ -63,9 +64,12 @@ def getmatchedprofiles():
         sql = "Select NAME,similarity_score from profiles where similarity_score > 30 order by similarity_score desc"
         mycursor.execute(sql)
         data = mycursor.fetchall()
-        print(data)
-        return data
-getmatchedprofiles()
+        #print(data)
+        if (data != None):
+            return data
+        else:
+            return False
+
 
 
 def getmails_name():

@@ -42,27 +42,33 @@ def showprofiles():
         title = request.form.get('jobtitle')
         print(title)
         job_desc = db.getjobdesc(title)
+        print(job_desc)
         skilldataset = backend.cleanprofilesdataset()
         backend.findsimilarityscore(job_desc,skilldataset)
 
-
-
-    return render_template("profiles.html",usr=db.getmatchedprofiles())
+    matchedprofiles = db.getmatchedprofiles()
+    if (job_desc!=False):
+        return render_template("profiles.html",usr=matchedprofiles,title=title,desc=job_desc[0])
+    else:
+        return render_template("noprofiles.html")
 
 
 
     #return db.getrole()
 
     # return render_template("table.html",usr=db.display_table())
-    return render_template("job-desc.html",usr=db.getrole())
+    #return render_template("job-desc.html",usr=db.getrole())
 
-@app.route('/sendmails')
+@app.route('/sendmails', methods = ['POST', 'GET'])
 def sendmails():
+    tot= int(request.form.get('tot'))
+    print("Total mails to be sent:",tot)
     data = db.getmails_name()
     print("Mail Sent to:")
     print(data[1])
-    send_mail.multiple_mails(data[0], data[1])
-    return render_template("profiles.html",usr=db.getmatchedprofiles())
+    send_mail.multiple_mails(data[0], data[1],tot)
+    #return render_template("profiles.html",usr=db.getmatchedprofiles())
+    return render_template("mailsent.html")
 
 @app.route('/displayrole')
 def displayroles():
@@ -72,34 +78,34 @@ def displayroles():
 
 
 #Step – 4 (creating route for login)
-@app.route('/login', methods = ['POST', 'GET'])
-def login():
-    if(request.method == 'POST'):
-        username = request.form.get('username')
-        password = request.form.get('password')     
-        if username == user['username'] and password == user['password']:
-            
-            session['user'] = username
-            return redirect('/dashboard')
-
-        return "<h1>Wrong username or password</h1>"    
-
-    return render_template("login.html")
+# @app.route('/login', methods = ['POST', 'GET'])
+# def login():
+#     if(request.method == 'POST'):
+#         username = request.form.get('username')
+#         password = request.form.get('password')
+#         if username == user['username'] and password == user['password']:
+#
+#             session['user'] = username
+#             return redirect('/dashboard')
+#
+#         return "<h1>Wrong username or password</h1>"
+#
+#     return render_template("login.html")
 
 #Step -5(creating route for dashboard and logout)
-@app.route('/dashboard')
-def dashboard():
-    if('user' in session and session['user'] == user['username']):
-        return '<h1>Welcome to the dashboard</h1>'
-    
-
-    return '<h1>You are not logged in.</h1>'  
-
-#Step -6(creating route for logging out)
-@app.route('/logout')
-def logout():
-    session.pop('user')         
-    return redirect('/login')
+# @app.route('/dashboard')
+# def dashboard():
+#     if('user' in session and session['user'] == user['username']):
+#         return '<h1>Welcome to the dashboard</h1>'
+#
+#
+#     return '<h1>You are not logged in.</h1>'
+#
+# #Step -6(creating route for logging out)
+# @app.route('/logout')
+# def logout():
+#     session.pop('user')
+#     return redirect('/login')
 
 #Step -7(run the app)
 if __name__ == '__main__':

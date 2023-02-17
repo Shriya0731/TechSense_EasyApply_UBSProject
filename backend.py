@@ -73,7 +73,7 @@ def cleanResume(resumeText):
 
 def cleanjd(job_desc):
 
-    cleaned_jd = cleanResume(str(job_desc))
+    cleaned_jd = cleanResume(job_desc)
 
     le = LabelEncoder()
 

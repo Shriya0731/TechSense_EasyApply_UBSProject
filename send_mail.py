@@ -45,8 +45,8 @@ Contact No. – 09675715533, 08937914088
     email_session.quit()
 
 
-def multiple_mails(mails,names):
-    count = len(mails)
+def multiple_mails(mails,names,tot):
+    count = tot
     i = 0
     while(i<count):
         send_mail(mails[i],names[i])
