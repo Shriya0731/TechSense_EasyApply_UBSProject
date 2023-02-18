@@ -62,11 +62,13 @@ def showprofiles():
 @app.route('/sendmails', methods = ['POST', 'GET'])
 def sendmails():
     tot= int(request.form.get('tot'))
+    title = request.form.get('title')
+    print("For position "+title)
     print("Total mails to be sent:",tot)
     data = db.getmails_name()
     print("Mail Sent to:")
     print(data[1])
-    send_mail.multiple_mails(data[0], data[1],tot)
+    send_mail.multiple_mails(data[0], data[1],tot,title)
     #return render_template("profiles.html",usr=db.getmatchedprofiles())
     return render_template("mailsent.html")
 

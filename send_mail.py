@@ -8,14 +8,14 @@ import DBConnection as db
 sender_email = "shriya.deshpande@cumminscollege.in"
 
 
-def send_mail(receiver_email, receiver_name):
-
+def send_mail(receiver_email, receiver_name,title):
+    title = title.upper()
     message = MIMEMultipart()
     message["From"] = sender_email
     message['To'] = receiver_email
     message['Subject'] = "NEW JOB OPPORTUNITY ALERT"
     text ="Hey ,"+receiver_name+'''\n
-It is our good pleasure to inform you that your Resume/profile has been selected online for our company’s direct recruitments. We came across your profile, and feel that your background is a direct match for the — role at UBS. 
+It is our good pleasure to inform you that your Resume/profile has been selected online for our company’s direct recruitments. We came across your profile, and feel that your background is a direct match for the — '''+title+ ''' at UBS. 
 We would like to invite you to the next round of interviews. 
 .
 If this is where you see your career grow please do confirm your interest to be a part of the process for this role by applying through the following link;
@@ -45,10 +45,10 @@ Contact No. – 09675715533, 08937914088
     email_session.quit()
 
 
-def multiple_mails(mails,names,tot):
+def multiple_mails(mails,names,tot,title):
     count = tot
     i = 0
     while(i<count):
-        send_mail(mails[i],names[i])
+        send_mail(mails[i],names[i],title)
         i=i+1
 

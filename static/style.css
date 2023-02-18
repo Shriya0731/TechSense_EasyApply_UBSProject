@@ -233,7 +233,7 @@
 }
 
 .page-header {
-    background: linear-gradient(rgba(43, 57, 64, .5), rgba(43, 57, 64, .5)), url(../img/carousel-1.jpg) center center no-repeat;
+    background: linear-gradient(rgba(43, 57, 64, .5), rgba(43, 57, 64, .9)), url("https://images.production.cdn.mutinyhq.io/ef3f9114-a6cb-4e10-97b6-122940e2f1c1/AdobeStock_121297894.jpeg") center center no-repeat;
     background-size: cover;
 }
 
@@ -256,14 +256,14 @@
 /*** Category ***/
 .cat-item {
     display: block;
-    box-shadow: 0 0 45px rgba(0, 0, 0, .08);
+    box-shadow: 0 0 45px rgba(0, 0, 0, .3);
     border: 1px solid transparent;
     transition: .5s;
 }
 
 .cat-item:hover {
     border-color: rgba(0, 0, 0, .08);
-    box-shadow: none;
+    box-shadow: 0 0 45px rgba(0, 0, 0, .05);
 }
 
 

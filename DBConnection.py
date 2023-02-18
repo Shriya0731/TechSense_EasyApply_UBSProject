@@ -33,7 +33,7 @@ def getrole():
 
 def getallprofiles():
     mycursor = mydb.cursor()
-    sql = "Select * from profiles"
+    sql = "Select * from profile"
     mycursor.execute(sql)
     data = mycursor.fetchall()
     return data
@@ -53,7 +53,7 @@ def getjobdesc(job_title):
 
 def addsimilarityscore(name,score):
     mycursor = mydb.cursor()
-    sql = "UPDATE profiles set similarity_score = %s where NAME = %s"
+    sql = "UPDATE profile set similarity_score = %s where NAME = %s"
     val = (score,name)
     mycursor.execute(sql, val)
     mydb.commit()
@@ -61,7 +61,7 @@ def addsimilarityscore(name,score):
 
 def getmatchedprofiles():
         mycursor = mydb.cursor()
-        sql = "Select NAME,similarity_score from profiles where similarity_score > 30 order by similarity_score desc"
+        sql = "Select NAME,similarity_score from profile where similarity_score > 30 order by similarity_score desc"
         mycursor.execute(sql)
         data = mycursor.fetchall()
         #print(data)
@@ -74,7 +74,7 @@ def getmatchedprofiles():
 
 def getmails_name():
     mycursor = mydb.cursor()
-    sql = "Select NAME,EMAIL from profiles where similarity_score > 30 order by similarity_score desc"
+    sql = "Select NAME,EMAIL from profile where similarity_score > 30 order by similarity_score desc"
     mycursor.execute(sql)
     data = mycursor.fetchall()
     print(data)
