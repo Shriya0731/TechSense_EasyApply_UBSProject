@@ -5,7 +5,8 @@ from email.mime.base import MIMEBase
 from email import encoders
 import DBConnection as db
 
-sender_email = "shriya.deshpande@cumminscollege.in"
+sender_email = ""
+password = ""
 
 
 def send_mail(receiver_email, receiver_name,title):
@@ -40,7 +41,7 @@ Contact No. – 09675715533, 08937914088
     my_message = message.as_string()
     email_session = smtplib.SMTP('smtp.gmail.com', 587)
     email_session.starttls()
-    email_session.login(sender_email, "Shriya@0731")
+    email_session.login(sender_email, password)
     email_session.sendmail(sender_email, receiver_email, my_message)
     email_session.quit()
 
