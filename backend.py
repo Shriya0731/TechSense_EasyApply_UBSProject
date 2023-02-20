@@ -104,7 +104,6 @@ def findsimilarityscore(job_desc,skillsdataset):
     for i in skillsdataset['cleaned_resume']:
 
         Resume = i.lower()
-        # desc =jd_1st
         tuples_list = [max([(fuzz.token_set_ratio(job_desc, Resume), Resume)])]
         # Unpack list of tuples into two  for j in resume1st]) for i in jd_1st
         similarity_score, fuzzy_match = map(list, zip(*tuples_list))
